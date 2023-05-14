@@ -7,8 +7,8 @@ class Ball:
         self.x = x
         self.y = y
         self.radius = radius
-        self.x_vel = random.choice([-3, 3])
-        self.y_vel = random.choice([-3, 3])
+        self.x_vel = random.choice([-5, 5])
+        self.y_vel = random.choice([-4, 4])
         self.rect = pygame.Rect(self.x, self.y, self.radius, self.radius)
         self.color = color
 
@@ -23,6 +23,8 @@ class Ball:
     def reset(self):
         self.x = self.window_width // 2
         self.y = self.window_height // 2
+        self.x_vel = random.choice([-4, 4])
+        self.y_vel = random.choice([-4, 4])
 
     def draw(self, window):
         self.rect = pygame.Rect(self.x, self.y, self.radius, self.radius)

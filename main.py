@@ -47,11 +47,13 @@ hover_blue = (37, 140, 249)
 menu = True
 selectedStart = True
 
+
 # Objects
 
 paddle1 = Paddle(window_width, window_height, 50, window_height // 2 - 50, 20, 100, 10, blue)
 paddle2 = Paddle(window_width, window_height, window_width - 70, window_height // 2 - 50, 20, 100, 10, red)
 ball = Ball(window_width, window_height, window_width // 2, window_height // 2, 10, white)
+
 
 # Player controls
 
@@ -64,6 +66,11 @@ player2 = {
     pygame.K_UP: False,
     pygame.K_DOWN: False
 }
+
+
+# Score
+score_player1 = 0
+score_player2 = 0
 
 
 # Checks for events
@@ -144,9 +151,15 @@ def create_button(text, font, width, height, hover=False):
 
     return button_surface
 
-# Handling collision
-def handle_collision():
-    pass
+
+# Shows players' score
+def show_score():
+    left_score_text = font.render(str(score_player1), True, white)
+    right_score_text = font.render(str(score_player2), True, white)
+
+    window.blit(left_score_text, (paddle1.x, 20))
+    window.blit(right_score_text, (paddle2.x, 20))
+
 
 # Shows the menu
 def show_menu():
@@ -179,7 +192,11 @@ def show_menu():
 
 # Shows the game
 def show_game():
+    global score_player1, score_player2
+
     window.fill(black)
+
+    show_score()
 
     if (player1[pygame.K_UP]):
         paddle1.move_up()
@@ -195,7 +212,14 @@ def show_game():
     paddle2.draw(window)
 
     if (ball.rect.colliderect(paddle1.rect)) or (ball.rect.colliderect(paddle2.rect)):
-        ball.x_vel *= -1                     
+        ball.x_vel *= -1
+
+    if (ball.x > window_width):
+        score_player1 += 1
+        ball.reset()
+    elif (ball.x < 0):
+        score_player2 += 1
+        ball.reset()  
 
     ball.move()
     ball.draw(window)
