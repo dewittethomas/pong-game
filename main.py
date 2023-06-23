@@ -82,11 +82,11 @@ def check_event():
 
     axis1 = joystick1.get_axis(1)
     select1 = joystick1.get_button(0) + joystick1.get_button(1) + joystick1.get_button(2) + joystick1.get_button(3) + joystick1.get_button(4) + joystick1.get_button(5) + joystick1.get_button(6) + joystick1.get_button(7) + joystick1.get_button(8)
-    quit1 = joystick1.get_button(2) * joystick1.get_button(3)
+    quit1 = joystick1.get_button(0) * joystick1.get_button(1)
 
     axis2 = joystick2.get_axis(1)
     select2 = joystick2.get_button(0) + joystick2.get_button(1) + joystick2.get_button(2) + joystick2.get_button(3) + joystick2.get_button(4) + joystick2.get_button(5) + joystick2.get_button(6) + joystick2.get_button(7) + joystick2.get_button(8)
-    quit2 = joystick2.get_button(2) * joystick2.get_button(3)
+    quit2 = joystick2.get_button(0) * joystick2.get_button(1)
 
 
     if (menu):
@@ -157,8 +157,12 @@ def show_score():
     left_score_text = font.render(str(score_player1), True, white)
     right_score_text = font.render(str(score_player2), True, white)
 
-    window.blit(left_score_text, (paddle1.x, 20))
-    window.blit(right_score_text, (paddle2.x, 20))
+    if (score_player2 <= 9):
+        window.blit(left_score_text, (paddle1.x, 20))
+        window.blit(right_score_text, (paddle2.x - 2, 20))
+    elif (score_player2 >= 10):
+        window.blit(left_score_text, (paddle1.x, 20))
+        window.blit(right_score_text, (paddle2.x - 40, 20))
 
 
 # Shows the menu
