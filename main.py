@@ -82,11 +82,11 @@ def check_event():
 
     axis1 = joystick1.get_axis(1)
     select1 = joystick1.get_button(0) + joystick1.get_button(1) + joystick1.get_button(2) + joystick1.get_button(3) + joystick1.get_button(4) + joystick1.get_button(5) + joystick1.get_button(6) + joystick1.get_button(7) + joystick1.get_button(8)
-    quit1 = joystick1.get_button(0) * joystick1.get_button(1)
+    quit1 = joystick1.get_button(6) * joystick1.get_button(7)
 
     axis2 = joystick2.get_axis(1)
     select2 = joystick2.get_button(0) + joystick2.get_button(1) + joystick2.get_button(2) + joystick2.get_button(3) + joystick2.get_button(4) + joystick2.get_button(5) + joystick2.get_button(6) + joystick2.get_button(7) + joystick2.get_button(8)
-    quit2 = joystick2.get_button(0) * joystick2.get_button(1)
+    quit2 = joystick2.get_button(6) * joystick2.get_button(7)
 
 
     if (menu):
